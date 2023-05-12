@@ -1,3 +1,5 @@
+org: sumer
+app: serverless-cognito-auth
 service: serverless-cognito-auth
 
 provider:
@@ -12,6 +14,7 @@ provider:
         - cognito-idp:AdminInitiateAuth
         - cognito-idp:AdminCreateUser
         - cognito-idp:AdminSetUserPassword
+        - cognito-idp:ForgotPassword
       Resource: "*"
 
 functions:
@@ -47,6 +50,20 @@ functions:
                 - Arn
             claims:
               - email
+  forgotPassword:
+    handler: user/forgotPassword.handler
+    events:
+      - http:
+          path: user/forgotPassword
+          method: post
+          cors: true
+  confirmForgotPassword:
+    handler: user/confirmForgotPassword.handler
+    events:
+      - http:
+          path: user/confirm-forgot-password
+          method: post
+          cors: true
 
 resources:
   Resources:

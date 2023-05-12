@@ -26,6 +26,7 @@ module.exports.handler = async (event) => {
             MessageAction: 'SUPPRESS'
         }
         const response = await cognito.adminCreateUser(params).promise();
+        //console.log(response.User.Attributes)
         if (response.User) {
             const paramsForSetPass = {
                 Password: password,
@@ -35,7 +36,14 @@ module.exports.handler = async (event) => {
             };
             await cognito.adminSetUserPassword(paramsForSetPass).promise()
         }
-        return sendResponse(200, { message: 'User registration successful' })
+        //return sendResponse(200, { message: 'User registration successful' })
+        //return sendResponse(200, { 
+        //    Password: password,
+        //    UserPoolId: user_pool_id,
+        //    Username: email,
+        //    Permanent: true 
+        //})
+        return sendResponse(200, response.User.Attributes )
     }
     catch (error) {
         const message = error.message ? error.message : 'Internal server error'
