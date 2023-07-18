@@ -15,6 +15,7 @@ provider:
         - cognito-idp:AdminCreateUser
         - cognito-idp:AdminSetUserPassword
         - cognito-idp:ForgotPassword
+        - cognito-idp:AdminUpdateUserAttributes
       Resource: "*"
 
 functions:
@@ -75,6 +76,10 @@ resources:
           - Name: email
             Required: true
             Mutable: true
+          #- Name: custom:id_user
+          #  Required: true
+          #  Mutable: true
+          #  AttributeDataType: String
         Policies:
           PasswordPolicy:
             MinimumLength: 6
