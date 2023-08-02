@@ -91,7 +91,7 @@ resources:
         ClientName: user-pool-ui
         GenerateSecret: false
         UserPoolId: { Ref: UserPool }
-        AccessTokenValidity: 900
-        IdTokenValidity: 900
+        AccessTokenValidity: 1
+        IdTokenValidity: 1
         ExplicitAuthFlows:
           - "ADMIN_NO_SRP_AUTH"
